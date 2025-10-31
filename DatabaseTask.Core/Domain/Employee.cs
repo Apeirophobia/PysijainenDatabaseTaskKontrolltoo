@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace DatabaseTask.Core.Domain
@@ -6,9 +7,14 @@ namespace DatabaseTask.Core.Domain
     public class Employee
     {
         [Key]
-        public Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public Guid EmployeeID { get; set; } = Guid.NewGuid();
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string DepartmentName { get; set; } = string.Empty;
+        public int Salary { get; set; }
+        [ForeignKey("EmployeeID")]
+        public ICollection<Sales> Sale { get; set; }
+
 
         /// ESIMENE HINDELINE HARJUTUS
         /// Nõuded ja tegevus:
